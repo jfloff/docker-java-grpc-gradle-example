@@ -1,0 +1,25 @@
+services:
+  client:
+    image: amazoncorretto:8
+    container_name: client
+    volumes:
+      - ./client/build/libs/:/home
+    working_dir: /home
+    command: 'java -jar client-0.0.1-SNAPSHOT-all.jar'
+    networks:
+      - hello_network
+
+  server:
+    image: amazoncorretto:8
+    container_name: server
+    volumes:
+      - ./server/build/libs/:/home
+    working_dir: /home
+    command: 'java -jar server-0.0.1-SNAPSHOT-all.jar'
+    networks:
+      - hello_network
+
+networks:
+  hello_network:
+    name: hello_network
+    external: true
